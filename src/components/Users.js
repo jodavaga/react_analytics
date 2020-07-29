@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactGA from 'react-ga';
+
+import { useHistory } from 'react-router-dom';
 
 export const Users = () => {
 
+    const history = useHistory();
+    
     const handleClick = () => {
 
         ReactGA.event({
@@ -12,6 +16,16 @@ export const Users = () => {
 
         console.log('data sent to google analytics');
     }
+
+    useEffect(() => {
+        history.listen((location) => {
+            
+            ReactGA.set({ page: location.pathname });
+            ReactGA.pageview( location.pathname );
+        })
+        
+    }, [ history ]);
+    
 
     return (
         <div>
