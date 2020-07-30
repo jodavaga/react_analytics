@@ -1,30 +1,16 @@
-import React, { useEffect } from 'react';
-import ReactGA from 'react-ga';
+import React from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { firebaseApp } from '../firebaseConfig';
 
 export const Users = () => {
-
-    const history = useHistory();
     
     const handleClick = () => {
 
-        ReactGA.event({
-            category: 'Button',
-            action: 'Click button on users page'
-        });
-
+        firebaseApp.analytics().logEvent('click', { item_name: 'users_button', content_type: 'button'});
+        firebaseApp.analytics().logEvent('select_content', { content_id: 'click', content_type: 'users_button'});
+        
         console.log('data sent to google analytics');
     }
-
-    useEffect(() => {
-        history.listen((location) => {
-            
-            ReactGA.set({ page: location.pathname });
-            ReactGA.pageview( location.pathname );
-        })
-        
-    }, [ history ]);
     
 
     return (

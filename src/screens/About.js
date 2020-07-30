@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
-import ReactGA from 'react-ga';
+
+import { firebaseApp } from '../firebaseConfig';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -24,15 +25,12 @@ export const About = () => {
                 if(entry.isIntersecting) {
                     console.log('heading visible', entry)
                     // event
-                    ReactGA.event({
-                        category: 'Scroll',
-                        action: 'Scrolled to heading 4',
-                        value: entry.intersectionRatio
-                    })
+                    
+                    firebaseApp.analytics().logEvent('personalized scroll', { category: 'Scroll', item: headingRef.current.id });
 
                 }
-             })
-          }
+            })
+        }
 
           const observerScroll = new IntersectionObserver(callback, opts);
 
