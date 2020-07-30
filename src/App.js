@@ -9,7 +9,6 @@ function App() {
   useEffect(() => {
     
     ReactGA.initialize('G-VCGEEDWXZ3');
-    
     // track page view
     // ReactGA.pageview('/users')
     ReactGA.pageview(window.location.pathname + window.location.search);
@@ -19,7 +18,7 @@ function App() {
   
 
   return (
-    <div className="container">
+    <div>
 
       <AppRouter />
       

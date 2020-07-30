@@ -1,9 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import ReactGA from 'react-ga';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 export const About = () => {
 
     const headingRef = useRef(null);
+
+    // Auth0 data
+    const { user, logout } = useAuth0();
 
     useEffect(() => {
         // Scroll analytics events
@@ -40,8 +45,29 @@ export const About = () => {
         <>
             <h1>About Analytics</h1>
             <hr />
+            <div className="row">
+                <div className="col">
+                    { user 
+                        ? <h2><small>Hola: </small>{user.name}</h2>
+                        : <h2>Hola mundo! - <small>please log in</small></h2>
+                    
+                    }
+                </div>
+                <div className="col text-right">
+                    { user && (
+                        <button
+                            className="btn btn-danger"
+                            onClick={ () => logout() }
+                        >
+                            Logout
+                        </button>
+                    )}
+                </div>
+                <br />
+            </div>
+            <br />
             <div>
-                some text
+                .
                 .
                 <br />
                 .
@@ -59,6 +85,13 @@ export const About = () => {
             <div>
                 .
                 .
+                .
+                <br />
+            </div>
+            <br />
+            <div>
+                .
+                .
                 <br />
                 .
                 <br />
@@ -67,6 +100,7 @@ export const About = () => {
             <div>
                 .
                 .
+                <br />
                 .
                 <br />
             </div>
