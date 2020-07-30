@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 // import ReactGA
 import ReactGA from 'react-ga';
+// firebase config
+import { firebaseApp } from './firebaseConfig';
 
 import { AppRouter } from './AppRouter';
 
@@ -8,7 +10,10 @@ function App() {
   
   useEffect(() => {
     
-    ReactGA.initialize('G-VCGEEDWXZ3');
+    // firebaseApp.analytics();
+    firebaseApp();
+
+    // ReactGA.initialize('G-6FJGH23T5N');
     // track page view
     // ReactGA.pageview('/users')
     ReactGA.pageview(window.location.pathname + window.location.search);
