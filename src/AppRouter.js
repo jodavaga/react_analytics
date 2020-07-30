@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Navbar } from './components/Navbar';
-import { About } from './components/About';
-import { Users } from './components/Users';
-import { Login } from './components/Login';
+import { About } from './screens/About';
+import { Users } from './screens/Users';
+import { Login } from './screens/Login';
 import { PrivateRoute } from './helpers/PrivateRoute';
 
 import { 

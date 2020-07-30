@@ -38,6 +38,12 @@ export const About = () => {
 
           observerScroll.observe( headingRef.current );
 
+          return (() => {
+              observerScroll.disconnect();
+              console.warn('Scroll tracker disconnected');
+
+          })
+
 
     }, [ ]);
 
