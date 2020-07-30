@@ -8,7 +8,7 @@ export const About = () => {
     const headingRef = useRef(null);
 
     // Auth0 data
-    const { user, logout } = useAuth0();
+    const { user, logout, isAuthenticated } = useAuth0();
 
     useEffect(() => {
         // Scroll analytics events
@@ -45,26 +45,33 @@ export const About = () => {
         <>
             <h1>About Analytics</h1>
             <hr />
-            <div className="row">
-                <div className="col">
-                    { user 
-                        ? <h2><small>Hola: </small>{user.name}</h2>
-                        : <h2>Hola mundo! - <small>please log in</small></h2>
-                    
-                    }
+            {
+                isAuthenticated && (
+                    <div className="row">
+                        <div className="col">
+                            <h2><small>Hola: </small>{user.name}</h2>
+                            <img src={user.picture} alt={user.name} />
+                        </div>
+                        <div className="col text-right">
+                            <button
+                                className="btn btn-danger"
+                                onClick={ () => logout() }
+                            >
+                                Logout
+                            </button>
+                        </div>
+                        <br />
+                    </div>
+                )
+            }
+            {
+                !isAuthenticated && (
+                <div className="alert alert-warning" role="alert">
+                    Please log in
                 </div>
-                <div className="col text-right">
-                    { user && (
-                        <button
-                            className="btn btn-danger"
-                            onClick={ () => logout() }
-                        >
-                            Logout
-                        </button>
-                    )}
-                </div>
-                <br />
-            </div>
+                )
+            }
+            
             <br />
             <div>
                 .

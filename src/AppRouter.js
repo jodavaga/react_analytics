@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { About } from './components/About';
 import { Users } from './components/Users';
 import { Login } from './components/Login';
+import { PrivateRoute } from './helpers/PrivateRoute';
 
 import { 
   BrowserRouter as Router,
@@ -20,7 +21,7 @@ export const AppRouter = () => {
             <Switch>
                 <Route exact path="/" component={ Login }></Route>
                 <Route exact path="/about"><About /> </Route>
-                <Route exact path="/users"><Users /></Route>
+                <PrivateRoute exact path="/users" component={ Users } />
             </Switch>
             </div>
       </Router>
